@@ -1,7 +1,7 @@
 package setenv;
 
 # where are we?
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 # be as strict and verbose as possible
 use strict;
@@ -30,25 +30,53 @@ sub import {
 }    #import
 
 #---------------------------------------------------------------------------
+# unimport
+#
+#  IN: 1 class (ignored)
+#      2..N environment variables to remove (default: all)
+
+sub unimport {
+    shift;
+
+    # get rid of all
+    if ( !@_ ) {
+        %ENV = ();
+    }
+
+    # just these please
+    else {
+        delete @ENV{@_};
+    }
+}    #unimport
+
+#---------------------------------------------------------------------------
 
 __END__
 
 =head1 NAME
 
-setenv - set %ENV variables at compile time
+setenv - conveniently (re)set %ENV variables at compile time
 
 =head1 SYNOPSIS
 
- use setenv FOOBAR => 1;
+ no setenv;                # BEGIN { %ENV = () }
+
+ no setenv qw( FOO BAR );  # BEGIN { delete @ENV{ qw( FOO BAR ) } }
+
+ use setenv                # BEGIN { $ENV{FOO} = 1, $ENV{BAR} = 2 }
+   FOO => 1,
+   BAR => 2,
+ ;
 
 =head1 DESCRIPTION
 
-Provide a simple way to set C<%ENV> variables at compile time.  Usually used
-during debugging.
+Provide a simple way to (re)set C<%ENV> variables at compile time.  Usually
+used during debugging only.  This is just syntactic sugar, without any
+additives.
 
 =head1 VERSION
 
-This documentation describes version 0.01.
+This documentation describes version 0.02.
 
 =head1 METHODS
 
@@ -56,8 +84,8 @@ There are no methods.
 
 =head1 THEORY OF OPERATION
 
-Since "import" is called by Perl at compile time when doing a C<use>, it will
-perform any setting of %ENV at that time.
+Since "import" and "noimport" are called by Perl at compile time when doing a
+C<use> or C<no>, it will perform any (re)setting of %ENV at that time.
 
 =head1 REQUIRED MODULES
 

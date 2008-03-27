@@ -4,7 +4,7 @@ This module makes it possible to easily assign %ENV variables at compile
 time, which is usually most handy when debugging code.
 
 Version:
- 0.01
+ 0.02
 
 Required Modules:
  (none)

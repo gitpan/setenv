@@ -1,2 +1,5 @@
+0.02	27 April 2008
+	Added support for "no setenv" (aka "unimport")
+
 0.01	27 April 2008
 	First version of setenv.

@@ -1,0 +1,7 @@
+MANIFEST
+CHANGELOG
+README
+Makefile.PL
+lib/setenv.pm
+t/001basic.t
+META.yml                                 Module meta-data (added by MakeMaker)

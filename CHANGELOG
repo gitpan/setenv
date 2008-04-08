@@ -1,5 +1,8 @@
-0.02	27 April 2008
+0.03	8 April 2008
+	Minor code cleanup.  Corrected dates in CHANGELOG.
+
+0.02	27 March 2008
 	Added support for "no setenv" (aka "unimport")
 
-0.01	27 April 2008
+0.01	27 March 2008
 	First version of setenv.

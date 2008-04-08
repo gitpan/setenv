@@ -1,7 +1,7 @@
 package setenv;
 
 # where are we?
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 # be as strict and verbose as possible
 use strict;
@@ -27,6 +27,8 @@ sub import {
     while ( my ( $key, $value ) = splice @_, 0, 2 ) {
         $ENV{$key} = $value;
     }
+
+    return;
 }    #import
 
 #---------------------------------------------------------------------------
@@ -38,15 +40,17 @@ sub import {
 sub unimport {
     shift;
 
+    # get rid of just these, please
+    if (@_) {
+        delete @ENV{@_};
+    }
+
     # get rid of all
-    if ( !@_ ) {
+    else {
         %ENV = ();
     }
 
-    # just these please
-    else {
-        delete @ENV{@_};
-    }
+    return;
 }    #unimport
 
 #---------------------------------------------------------------------------
@@ -76,7 +80,7 @@ additives.
 
 =head1 VERSION
 
-This documentation describes version 0.02.
+This documentation describes version 0.03.
 
 =head1 METHODS
 

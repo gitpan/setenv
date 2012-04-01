@@ -1,7 +1,7 @@
 package setenv;
 
 # where are we?
-$VERSION = '0.03';
+$VERSION= '0.04';
 
 # be as strict and verbose as possible
 use strict;
@@ -24,9 +24,8 @@ sub import {
     shift;
 
     # set the keys / values
-    while ( my ( $key, $value ) = splice @_, 0, 2 ) {
-        $ENV{$key} = $value;
-    }
+    my ( $key, $value );
+    $ENV{$key}= $value while ( $key, $value )= splice @_, 0, 2;
 
     return;
 }    #import
@@ -47,7 +46,7 @@ sub unimport {
 
     # get rid of all
     else {
-        %ENV = ();
+        %ENV= ();
     }
 
     return;
@@ -80,7 +79,7 @@ additives.
 
 =head1 VERSION
 
-This documentation describes version 0.03.
+This documentation describes version 0.04.
 
 =head1 METHODS
 
@@ -101,7 +100,7 @@ C<use> or C<no>, it will perform any (re)setting of %ENV at that time.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2008 Elizabeth Mattijsen <liz@dijkmat.nl>. All rights
+Copyright (c) 2008, 2012 Elizabeth Mattijsen <liz@dijkmat.nl>. All rights
 reserved.  This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
 
